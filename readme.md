@@ -1,4 +1,3 @@
-
 # AI RAG Research - Pluralsight Course (Personal Working Copy)
 
 This repository is my personal working copy as I take the Pluralsight course on **Deploying and Maintaining RAG (Retrieval-Augmented Generation) Systems**. It is not intended for collaboration, sharing, or accepting pull requests. All notes, code, and experiments here are for my own learning and reference.
@@ -10,6 +9,7 @@ This course covers the essential aspects of building, deploying, and maintaining
 ## Course Structure
 
 ### Module 1: Building and Deploying RAG in Production
+
 **Location:** `01/demos/deploying-maintaining-rag-systems-m1/`
 
 - **m1-01-embeddings.ipynb** - Introduction to embeddings and vector representations
@@ -17,6 +17,7 @@ This course covers the essential aspects of building, deploying, and maintaining
 - **Slides:** `01/building-and-deploying-rag-in-production-slides.pdf`
 
 ### Module 2: Managing RAG Systems
+
 **Location:** `02/demos/deploying-maintaining-rag-systems-m2/`
 
 - **m2-01-managing-rag-system.ipynb** - System management and optimization strategies
@@ -25,6 +26,7 @@ This course covers the essential aspects of building, deploying, and maintaining
 ## Data Sources
 
 Each module includes sample data in the `data/` folder:
+
 - `About.md` - General information and context
 - `Bar-AI-Vision.md` - AI vision use case examples
 - `Qux-AI-Vision.md` - Additional AI vision scenarios
@@ -39,24 +41,28 @@ Each module includes sample data in the `data/` folder:
 ## Setup Instructions
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd AiRagResearch
    ```
 
 2. **Install dependencies for Module 1:**
+
    ```bash
    cd 01/demos/deploying-maintaining-rag-systems-m1/
    pip install -r requirements.txt
    ```
 
 3. **Install dependencies for Module 2:**
+
    ```bash
    cd 02/demos/deploying-maintaining-rag-systems-m2/
    pip install -r requirements.txt
    ```
 
 4. **Launch Jupyter Notebook:**
+
    ```bash
    jupyter notebook
    ```
@@ -116,7 +122,6 @@ If you encounter issues:
 
 5. **Secrets / API Keys:** Never hardcode secrets in notebooks. Use environment variables (e.g., `.env`, which is already git-ignored). If a secret is accidentally committed, rotate the key immediately and remove it from history before pushing.
 
-
 ## Contributing
 
 This repository is for my personal use only while following the course. I am not accepting contributions or pull requests.
@@ -136,4 +141,4 @@ This course material is provided for educational purposes. Please refer to Plura
 
 **Happy Learning!** 🚀
 
-*Last Updated: September 2025*
+_Last Updated: September 2025_
