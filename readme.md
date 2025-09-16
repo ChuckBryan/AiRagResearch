@@ -61,6 +61,19 @@ Each module includes sample data in the `data/` folder:
    jupyter notebook
    ```
 
+5. **Set your environment variables (required):**
+
+   Create a `.env` file at the repo root (or export variables in your shell). A starter file is provided:
+
+   - Copy `.env.sample` to `.env`
+   - Fill in the values:
+
+   ```dotenv
+   OPENAI_API_KEY=your_key_here
+   ```
+
+   The notebooks load environment variables with `python-dotenv` if present and will error early if `OPENAI_API_KEY` is not set.
+
 ## Learning Objectives
 
 By the end of this course, you will be able to:
@@ -100,6 +113,8 @@ If you encounter issues:
 2. **Jupyter:** Make sure Jupyter can access the correct Python environment
 3. **Data Access:** Verify that data files are in the correct locations
 4. **Memory:** Some operations may require sufficient RAM for large embeddings
+
+5. **Secrets / API Keys:** Never hardcode secrets in notebooks. Use environment variables (e.g., `.env`, which is already git-ignored). If a secret is accidentally committed, rotate the key immediately and remove it from history before pushing.
 
 
 ## Contributing
