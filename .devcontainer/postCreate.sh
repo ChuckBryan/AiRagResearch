@@ -16,8 +16,9 @@ else
   log "No requirements.txt found, skipping"
 fi
 
-log "Installing core tools (jupyterlab, ipykernel, openai)"
-$PY -m pip install jupyterlab ipykernel openai
+log "Installing core tools (jupyterlab, ipykernel, openai, llama-index stack)"
+$PY -m pip install jupyterlab ipykernel openai \
+  llama-index llama-index-llms-openai llama-index-vector-stores-chroma
 
 log "Registering Jupyter kernel 'rag-env'"
 $PY -m ipykernel install --user --name rag-env --display-name "Python (RAG Env)"
