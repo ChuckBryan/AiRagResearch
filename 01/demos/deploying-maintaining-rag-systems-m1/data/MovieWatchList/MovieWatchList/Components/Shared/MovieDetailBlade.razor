@@ -1,0 +1,165 @@
+<!-- Bootstrap Offcanvas Implementation -->
+<div class="offcanvas offcanvas-end cinematic-offcanvas" tabindex="-1" id="movieDetailOffcanvas"
+    aria-labelledby="movieDetailLabel" role="dialog" aria-modal="true" @ref="offcanvasRef">
+    <div class="offcanvas-header cinematic-header">
+        <h5 class="offcanvas-title cinematic-title" id="movieDetailLabel">Movie Details</h5>
+        <button type="button" class="btn-close cinematic-close" aria-label="Close movie details"
+            data-bs-dismiss="offcanvas" @onclick="CloseBlade"></button>
+    </div>
+    <div class="offcanvas-body cinematic-body">
+        @if (movie == null)
+        {
+            <div class="d-flex justify-content-center align-items-center" style="height:100%;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="cinematic-detail-container">
+                <div class="cinematic-row">
+                    <div class="cinematic-poster-col">
+                        <Poster PosterPath="@movie.poster_path" Title="@movie.title" MaxHeight="320" />
+                    </div>
+                    <div class="cinematic-info-col">
+                        <h3 class="cinematic-movie-title" tabindex="0">@movie.title</h3>
+                        <div class="cinematic-meta"><span class="cinematic-label">Release Date:</span> <span
+                                class="cinematic-value">@movie.release_date</span></div>
+                        <div class="cinematic-meta"><span class="cinematic-label">Director:</span> <span
+                                class="cinematic-value">@director</span></div>
+                        <div class="cinematic-meta"><span class="cinematic-label">Starring:</span> <span
+                                class="cinematic-value">@string.Join(", ", topActors ?? new List<string>())</span></div>
+                        <div class="cinematic-rating">
+                            <RatingBadge VoteAverage="@movie.vote_average" MpaaRating="@mpaaRating" />
+                        </div>
+                        <hr class="cinematic-hr" />
+                        <h5 class="cinematic-summary-label">Summary</h5>
+                        <p class="cinematic-summary" tabindex="0">@movie.overview</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .cinematic-offcanvas {
+        background: linear-gradient(135deg, #181818 0%, #2c2c54 100%);
+        box-shadow: 0 8px 32px rgba(44, 44, 84, 0.18);
+        border-radius: 24px 0 0 24px;
+        width: 650px !important;
+        max-width: 100vw;
+        color: #f3f3f3;
+        border: none;
+        overflow-x: hidden;
+    }
+
+    .cinematic-header {
+        background: rgba(44, 44, 84, 0.25);
+        border-radius: 24px 0 0 0;
+        box-shadow: 0 2px 8px rgba(229, 9, 20, 0.12);
+        padding: 1.2em 1.5em 1em 1.5em;
+    }
+
+    .cinematic-title {
+        font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #f5c518;
+        letter-spacing: 0.04em;
+        text-shadow: 0 2px 8px rgba(44, 44, 84, 0.18);
+    }
+
+    .cinematic-close {
+        background: linear-gradient(90deg, #e50914 0%, #f5c518 100%);
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(229, 9, 20, 0.12);
+        border: none;
+    }
+
+    .cinematic-body {
+        background: rgba(24, 24, 24, 0.85);
+        border-radius: 0 0 0 24px;
+        padding: 2em 1.5em 2em 1.5em;
+        box-shadow: 0 8px 32px rgba(44, 44, 84, 0.18);
+    }
+
+    .cinematic-detail-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .cinematic-row {
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+        align-items: flex-start;
+    }
+
+    .cinematic-poster-col {
+        flex: 0 0 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cinematic-info-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7em;
+    }
+
+    .cinematic-movie-title {
+        font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #f5c518;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2em;
+        text-shadow: 0 2px 8px rgba(44, 44, 84, 0.18);
+    }
+
+    .cinematic-meta {
+        font-size: 1.08rem;
+        color: #f3f3f3;
+        margin-bottom: 0.2em;
+    }
+
+    .cinematic-label {
+        font-weight: 600;
+        color: #f5c518;
+        margin-right: 0.5em;
+    }
+
+    .cinematic-value {
+        color: #f3f3f3;
+        opacity: 0.85;
+    }
+
+    .cinematic-rating {
+        margin: 0.7em 0 0.7em 0;
+    }
+
+    .cinematic-hr {
+        border: none;
+        border-top: 1.5px solid #2c2c54;
+        margin: 1em 0;
+    }
+
+    .cinematic-summary-label {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #f5c518;
+        margin-bottom: 0.2em;
+    }
+
+    .cinematic-summary {
+        font-size: 1.08rem;
+        color: #f3f3f3;
+        opacity: 0.92;
+        margin-bottom: 0.2em;
+    }
+</style>

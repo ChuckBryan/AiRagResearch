@@ -1,0 +1,69 @@
+@* Poster.razor: Displays a movie poster or fallback *@
+@code {
+    [Parameter] public string? PosterPath { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public int MaxHeight { get; set; } = 300;
+}
+
+@if (!string.IsNullOrEmpty(PosterPath))
+{
+    <div class="cinematic-poster-wrapper">
+        <img src="https://image.tmdb.org/t/p/w342/@(PosterPath)" alt="Poster for @Title" class="cinematic-poster"
+            style="max-height:@MaxHeight}px;" role="img" aria-label="Poster for @Title"
+            aria-describedby="movieDetailLabel" />
+    </div>
+}
+else
+{
+    <div class="cinematic-poster-wrapper">
+        <div class="cinematic-poster-fallback d-flex align-items-center justify-content-center"
+            style="height:@MaxHeight}px;" role="img" aria-label="No poster available for @Title"
+            aria-describedby="movieDetailLabel">
+            <span class="cinematic-fallback-text">No Image</span>
+        </div>
+    </div>
+}
+
+<style>
+    .cinematic-poster-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(44, 44, 84, 0.25);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(44, 44, 84, 0.18), 0 2px 12px rgba(229, 9, 20, 0.12);
+        backdrop-filter: blur(8px);
+        padding: 0.5em;
+        transition: box-shadow 0.3s;
+    }
+
+    .cinematic-poster {
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(229, 9, 20, 0.18), 0 2px 8px rgba(245, 197, 24, 0.12);
+        transition: transform 0.2s, box-shadow 0.2s;
+        max-width: 100%;
+        object-fit: cover;
+        background: #181818;
+    }
+
+    .cinematic-poster:hover {
+        transform: scale(1.04);
+        box-shadow: 0 8px 32px rgba(245, 197, 24, 0.18), 0 2px 12px rgba(229, 9, 20, 0.18);
+    }
+
+    .cinematic-poster-fallback {
+        width: 100%;
+        background: linear-gradient(135deg, #181818 0%, #2c2c54 100%);
+        border-radius: 14px;
+        color: #f5c518;
+        font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 8px rgba(44, 44, 84, 0.18);
+    }
+
+    .cinematic-fallback-text {
+        opacity: 0.7;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+    }
+</style>

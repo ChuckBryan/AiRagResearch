@@ -1,0 +1,19 @@
+@* RatingBadge.razor: Displays movie rating and MPAA badge *@
+<span class="fw-semibold text-cinematic" id="ratingLabel"
+    style="font-size:1.1rem; letter-spacing:0.03em;">Rating:</span>
+<span class="cinematic-badge" role="status" aria-labelledby="ratingLabel">
+    <span class="cinematic-gradient">@VoteAverage</span>
+</span>
+@if (!string.IsNullOrWhiteSpace(MpaaRating))
+{
+    <span class="cinematic-badge ms-2" role="status" aria-label="MPAA rating: @MpaaRating">
+        <span class="cinematic-gradient">@MpaaRating</span>
+    </span>
+}
+
+@code {
+    [Parameter] public double? VoteAverage { get; set; }
+    [Parameter] public string? MpaaRating { get; set; }
+}
+
+@* Styling moved to global app.css to avoid Razor parsing issues *@

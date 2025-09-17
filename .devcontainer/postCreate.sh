@@ -20,6 +20,9 @@ log "Installing core tools (jupyterlab, ipykernel, openai, llama-index stack)"
 $PY -m pip install jupyterlab ipykernel openai \
   llama-index llama-index-llms-openai llama-index-vector-stores-chroma
 
+log "Installing newer SQLite for ChromaDB compatibility"
+$PY -m pip install pysqlite3-binary packaging
+
 log "Registering Jupyter kernel 'rag-env'"
 $PY -m ipykernel install --user --name rag-env --display-name "Python (RAG Env)"
 

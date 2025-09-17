@@ -1,0 +1,51 @@
+@page "/"
+@page "/nowplaying"
+@rendermode InteractiveServer
+@using MovieWatchList.Components.Shared
+
+<h1>Now Playing Movies</h1>
+
+@if (movies == null)
+{
+    <p>Loading...</p>
+}
+else if (movies.Count == 0)
+{
+    <p>No movies found.</p>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            @foreach (var movie in movies)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-lg border-0 movie-card-hover" style="cursor:pointer;"
+                        data-bs-toggle="offcanvas" data-bs-target="#movieDetailOffcanvas" @onclick="() => ShowBlade(movie.id)">
+                        @if (!string.IsNullOrEmpty(movie.poster_path))
+                        {
+                            <img src="https://image.tmdb.org/t/p/w342/@(movie.poster_path)" alt="@movie.title" class="card-img-top"
+                                style="border-radius: 8px 8px 0 0;" />
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center justify-content-center bg-light text-secondary"
+                                style="height:300px;">No Image</div>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">@movie.title</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <MovieDetailBlade MovieId="@selectedMovieId" IsOpen="@isBladeOpen" OnClose="@CloseBlade" />
+    </div>
+    <style>
+        .movie-card-hover:hover {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            transform: translateY(-2px) scale(1.02);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+    </style>
+}
